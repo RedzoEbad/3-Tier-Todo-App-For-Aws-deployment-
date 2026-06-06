@@ -9,7 +9,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  const API_URL =
+    process.env.REACT_APP_API_URL ||
+    (process.env.REACT_APP_ALB_DNS_URL && `https://${process.env.REACT_APP_ALB_DNS_URL}`) ||
+    'http://localhost:5000';
 
   // Fetch all todos
   useEffect(() => {
